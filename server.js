@@ -4,7 +4,7 @@ const routes = require('./routes');
 
 const cors = require('cors')
 
-const session = require('express-sessions')
+const session = require('express-session')
 const MongoDBStore = require('connect-mongodb-session')(session)
 
 const PORT = process.env.PORT || 3003
