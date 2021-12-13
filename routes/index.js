@@ -1,4 +1,4 @@
 module.exports = {
-  home: require('./home.routes'),
-  users: require('./users.routes')
+  home: require('./home'),
+  users: require('./users')
 }
