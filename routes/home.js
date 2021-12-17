@@ -28,4 +28,31 @@ router.route("/memoslist").get((req, res) => {
         .then(foundMemos => res.json(foundMemos))
 })
 
+router.delete('/delete/:id', (req, res) => {
+    const id= req.params.id
+
+    Memo.findByIdAndDelete({_id: id}, (req, res, err) => {
+        if(!err) {
+            console.log("Memo deleted")
+        }else {
+            console.log(err)
+        }
+    })
+})
+
+router.put('/put/:id', (req, res) => {
+    const updatedMemo = {
+        title: req.body.title,
+        body: req.body.body,
+        createdOn: req.body.createdOn
+    }
+    Memo.findByIdAndUpdate({_id: req.params.id}, {$set: updatedMemo}, (req, res, errr) => {
+        if(!err) {
+            console.log("Memo updated")
+        } else {
+            console.log(err)
+        }
+    })
+})
+
 module.exports = router

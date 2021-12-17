@@ -29,33 +29,7 @@ const coreOptions = {
     credentials: true
 }
 
-app.use(cors(coreOptions))
-
-// app.set('trust proxy', 1)
-
-
-// app.use(session({
-//     secret: process.env.SECRET,
-//     resave: false,
-//     saveUninitialized: false,
-//     store: new MongoDBStore({ 
-//         uri: process.env.MONGODBURI,
-//         collection: 'mySessions'
-//     }),
-//     cookie:{
-//         sameSite: 'none',
-//         secure: true
-// }
-// }))
-
-
-// const isAuthenticated = (req, res, next) => {
-//     if (req.session.currentUser) {
-//         return next()
-//     } else {
-//         res.status(403).json({msg:"login required"})
-//     }
-// }
+app.use(cors())
 
 app.use(express.json())
 
@@ -66,7 +40,10 @@ app.get('/', (req, res) => {
 })
 
 
-app.use('/memolist', routes.home)
+app.use('/memoslist', routes.home)
+app.use('/memoslist', require("./routes/home"))
+app.use('/delete/:id', require("./routes/home"))
+app.use('/put/:id', require("./routes/home"))
 app.use("/", require ("./routes/home"))
 // app.use('/users', routes.users)
 
