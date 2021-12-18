@@ -1,4 +1,5 @@
 const express = require('express')
+const { MemoryStore } = require('express-session')
 const router = express.Router()
 const Memo = require("../models/Memo")
 
@@ -11,7 +12,7 @@ const Memo = require("../models/Memo")
 // router.put('/:id', ctrls.home.update)
 // router.delete('/:id', ctrls.home.destroy)
 
-router.route("/memoform").post((req, res) => {
+router.route("/newmemo").post((req, res) => {
     const title = req.body.title
     const body = req.body.body
     const createdOn = req.body.createdOn
@@ -21,9 +22,10 @@ router.route("/memoform").post((req, res) => {
         createdOn
     })
     newMemo.save()
+
 })
 
-router.route("/memoslist").get((req, res) => {
+router.route("/memos").get((req, res) => {
     Memo.find()
         .then(foundMemos => res.json(foundMemos))
 })
@@ -40,13 +42,14 @@ router.delete('/delete/:id', (req, res) => {
     })
 })
 
-router.put('/put/:id', (req, res) => {
-    const updatedMemo = {
+router.put('/update/:id', (req, res) => {
+    const id= req.params.id
+    const updateMemo = {
         title: req.body.title,
         body: req.body.body,
         createdOn: req.body.createdOn
     }
-    Memo.findByIdAndUpdate({_id: req.params.id}, {$set: updatedMemo}, (req, res, errr) => {
+    Memo.findByIdAndUpdate({_id: id}, {$set: updateMemo}, (req, res, err) => {
         if(!err) {
             console.log("Memo updated")
         } else {
