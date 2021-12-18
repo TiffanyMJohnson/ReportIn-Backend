@@ -17,6 +17,7 @@ const app = express()
 require('./config/db.connection')
 
 const whitelist = ['http://localhost:3000', process.env.HEROKUFRONTURL]
+
 const coreOptions = {
     origin: (origin, callback) => {
         if (whitelist.indexOf(origin) !== -1 || !origin) {
@@ -28,7 +29,7 @@ const coreOptions = {
     credentials: true
 }
 app.use(bodyParser.json())
-app.use(cors())
+app.use(cors(coreOptions))
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
