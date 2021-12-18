@@ -8,7 +8,9 @@ const path= require("path")
 require('dotenv').config()
 
 
-mongoose.connect("mongodb+srv://tiffanyjohnson:avalynn2@seir-flex-622.fn8cm.mongodb.net/ReportIn")
+const MONGODBURI=process.env.MONGODBURI
+
+mongoose.connect(MONGODBURI)
 
 const PORT = process.env.PORT || 3003
 
