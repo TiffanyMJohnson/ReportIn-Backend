@@ -3,9 +3,11 @@ const routes = require('./routes');
 const cors = require('cors')
 const mongoose = require("mongoose")
 const bodyParser = require("body-parser")
+
 const path= require("path")
-// const session = require('express-session')
-// const MongoDBStore = require('connect-mongodb-session')(session)
+require('dotenv').config()
+
+
 mongoose.connect("mongodb+srv://tiffanyjohnson:avalynn2@seir-flex-622.fn8cm.mongodb.net/ReportIn")
 
 const PORT = process.env.PORT || 3003

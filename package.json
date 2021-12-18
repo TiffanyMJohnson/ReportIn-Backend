@@ -1,6 +1,10 @@
 {
   "name": "reportin-backend",
   "version": "1.0.0",
+  
+  "engines": {
+    "node": "14.17.0"
+  },
   "description": "",
   "main": "server.js",
   "scripts": {
@@ -29,4 +33,7 @@
     "express-sessions": "^1.0.6",
     "mongoose": "^6.1.1"
   }
+  
+
+  
 }
